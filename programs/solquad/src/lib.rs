@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("3sd5iCCNUngPFu9QwgeTACP9KiiPaCt1bfBbsCjL64u3");
+declare_id!("5sFUqUTjAMJARrEafMX8f4J1LagdUQ9Y8TR8HwGNHkU8");
 
 #[program]
 pub mod solquad {
@@ -41,15 +41,19 @@ pub mod solquad {
         let pool_account = &mut ctx.accounts.pool_account;
         let project_account = &ctx.accounts.project_account;
 
-        pool_account.projects.push(
-            project_account.project_owner
-        );
-        pool_account.total_projects += 1;
-
-        escrow_account.project_reciever_addresses.push(
-            project_account.project_owner
-        );
-
+        // Check if the project is already in the pool
+        if !pool_account.projects.contains(&project_account.project_owner) {
+            pool_account.projects.push(
+                project_account.project_owner
+            );
+            pool_account.total_projects += 1;
+    
+            escrow_account.project_reciever_addresses.push(
+                project_account.project_owner
+            );
+        } else {
+            return Err(Errors::DuplicateProject.into());
+        }
         Ok(())
     }
 
@@ -210,4 +214,10 @@ pub struct Voter {
     pub voter: Pubkey,
     pub voted_for: Pubkey,
     pub token_amount: u64
+}
+
+#[error_code]
+pub enum Errors {
+    #[msg("Duplicate project")]
+    DuplicateProject,
 }
