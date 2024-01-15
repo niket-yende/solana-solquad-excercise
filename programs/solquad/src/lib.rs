@@ -154,6 +154,10 @@ pub struct AddProjectToPool<'info> {
     pub escrow_account: Account<'info, Escrow>,
     #[account(mut)]
     pub pool_account: Account<'info, Pool>,
+    #[account(
+        seeds = [b"project".as_ref(), pool_account.key().as_ref(), project_owner.key().as_ref()],
+        bump,
+    )]
     pub project_account: Account<'info, Project>,
     pub project_owner: Signer<'info>,
 }
