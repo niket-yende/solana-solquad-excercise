@@ -1,10 +1,10 @@
 [features]
 seeds = false
 skip-lint = false
-[programs.localnet]
-solquad = "5sFUqUTjAMJARrEafMX8f4J1LagdUQ9Y8TR8HwGNHkU8"
-
 [programs.devnet]
+solquad = "3sd5iCCNUngPFu9QwgeTACP9KiiPaCt1bfBbsCjL64u3"
+
+[programs.localnet]
 solquad = "5sFUqUTjAMJARrEafMX8f4J1LagdUQ9Y8TR8HwGNHkU8"
 
 [registry]
