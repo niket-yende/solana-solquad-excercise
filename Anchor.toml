@@ -11,7 +11,7 @@ solquad = "3sd5iCCNUngPFu9QwgeTACP9KiiPaCt1bfBbsCjL64u3"
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Devnet"
+cluster = "Localnet"
 wallet = "/home/solana/.config/solana/id.json"
 
 [scripts]
